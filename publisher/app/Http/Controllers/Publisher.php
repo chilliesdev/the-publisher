@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
- 
+
 class Publisher extends Controller
 {
     public function subscribe(Request $request, $topic)
@@ -19,9 +19,12 @@ class Publisher extends Controller
         ];
 
         // TODO use a queue
-        // $response = Http::post('http://example.com', $data);
+        try {
+            $response = Http::post('http://127.0.0.1:9000/api/subscribe', $data);
+            return $response;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
 
-        // return $response;
-        return $data;
     } 
 }
