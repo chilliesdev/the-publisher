@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class Publisher extends Controller
+class PublisherController extends Controller
 {
     public function subscribe(Request $request, $topic)
     {
