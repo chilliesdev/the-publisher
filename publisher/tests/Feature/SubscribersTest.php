@@ -16,14 +16,14 @@ class SubscribersTest extends TestCase
 
     public function test_get_all_subscribers()
     {
-        $response = $this->get('/subscribers');
+        $response = $this->get('/api/subscribers');
 
         $response->assertStatus(200);
     }
 
     public function test_create_new_subscriber(): string
     {
-        $response = $this->post('/subscribers', [
+        $response = $this->post('/api/subscribers', [
             "url" => "http://mysubscriber.test/"
         ]);
         
@@ -42,7 +42,7 @@ class SubscribersTest extends TestCase
 
     public function test_update_subscriber(string $id): void
     {
-        $response = $this->patch('//subscribers/'.$id, [
+        $response = $this->patch('/api/subscribers/'.$id, [
             "url" => "http://mysubscriber.test/"
         ]);
 
@@ -57,7 +57,7 @@ class SubscribersTest extends TestCase
 
     public function test_delete_subscriber(string $id): void
     {
-        $response = $this->delete('//subscribers/'.$id);
+        $response = $this->delete('/api/subscribers/'.$id);
 
         $response->assertStatus(200);
     }
