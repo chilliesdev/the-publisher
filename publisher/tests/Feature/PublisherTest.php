@@ -15,7 +15,7 @@ class PublisherTest extends TestCase
      */
     public function test_subscribe()
     {
-        $response = $this->post('/api/subscribe/new-topic', [
+        $response = $this->post('/subscribe/new-topic', [
             "url" => "http://mysubscriber.test/"
         ]);
 

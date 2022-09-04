@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\SubscribersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::post('/subscribe/{topic}', [PublisherController::class, 'subscribe']);
+
+Route::apiResource('subscribers', SubscribersController::class);
