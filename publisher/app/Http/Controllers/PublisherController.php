@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Subscriber;
 
 class PublisherController extends Controller
 {
@@ -18,13 +19,16 @@ class PublisherController extends Controller
             "data" => $request->all()
         ];
 
-        // TODO use a queue
-        try {
-            $response = Http::post('http://127.0.0.1:9000/api/subscribe', $data);
-            return $response;
-        } catch (\Throwable $th) {
-            throw $th;
+        $subscribers = Subscriber::all();
+
+        foreach ($subscribers as $subscriber){
+            try {
+                Http::post($subscriber->url, $data);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
         }
 
+        return ["result" => true];
     } 
 }
